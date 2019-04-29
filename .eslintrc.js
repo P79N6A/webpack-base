@@ -67,5 +67,9 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/interface-name-prefix': [1, 'always'],
     semi: 0,
+    '@typescript-eslint/no-use-before-define': [
+      2,
+      { functions: false, classes: true, variables: true },
+    ],
   },
 }

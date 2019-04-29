@@ -47,7 +47,7 @@ const rules = [
     use: 'happypack/loader?id=css',
   },
   {
-    test: /\.(png|jpg|gif|svg)/,
+    test: /\.(png|jpg|gif|svg|webp)/,
     ...common,
     use: [
       {
