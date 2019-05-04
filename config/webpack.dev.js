@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const base = require('./webpack.common.js')
+const { PORT } = require('./config')
 
 module.exports = merge(base, {
   mode: 'development',
@@ -12,7 +13,7 @@ module.exports = merge(base, {
     // contentBase: path.resolve(__dirname, '../dist'),    //服务路径，存在于缓存中
     compress: true, // 一切服务都启用gzip 压缩
     // host: 'localhost',                                  // 默认是localhost
-    port: 7241, // 端口
+    port: PORT, // 端口
     // open: true,                                         // 自动打开浏览器
     hot: true, // 开启热更新，只监听js文件，所以css假如被抽取后，就监听不到了
     inline: true, // 启用内联模式，一段处理实时重载的脚本被插入到bundle中，并且构建消息会出现在浏览器控制台
@@ -32,7 +33,7 @@ module.exports = merge(base, {
     // 简化控制台输出
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['You application is running here http://localhost:7241'],
+        messages: [`You application is running here http://localhost:${PORT}`],
         notes: [
           'Some additionnal notes to be displayed unpon successful compilation',
         ],

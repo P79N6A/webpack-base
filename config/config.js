@@ -4,6 +4,7 @@ const path = require('path')
 const devMode = 'production' !== process.env.NODE_ENV
 
 module.exports = {
+  PORT: 8000,
   ENTRY_PATH: path.resolve(__dirname, '../src/'),
   ROOT_PATH: path.resolve(__dirname, '../'),
   OUTPUT_PATH: path.resolve(__dirname, '../dist/page'),

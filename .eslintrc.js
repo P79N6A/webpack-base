@@ -71,5 +71,9 @@ module.exports = {
       2,
       { functions: false, classes: true, variables: true },
     ],
+    '@typescript-eslint/no-unused-vars': [
+      1,
+      { vars: 'local', args: 'after-used', argsIgnorePattern: '^_' },
+    ],
   },
 }
