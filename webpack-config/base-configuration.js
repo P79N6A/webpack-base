@@ -65,6 +65,8 @@ module.exports = {
   FILENAME: devMode ? "js/[name].[hash:8].js" : "js/[name].[chunkhash:8].js",
   OUTPUT_PATH: resolve("../dist/page"),
   PUBLICPATH: devMode ? "/" : "./",
+  /** resolve modules 路径 */
+  MODULESPATH: resolve('../src/'),
   alias,
   ...devServer,
   ...htmlWebPackPlugin

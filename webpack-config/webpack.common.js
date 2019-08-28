@@ -71,5 +71,30 @@ Object.keys(static.alias).forEach(name => {
   config.resolve.alias.set(name, static.alias[name])
 })
 
+/** 用于描述的 JSON 文件 */
+config.resolve
+  .descriptionFiles
+  .add('package.json')
+  
+/** 自动解析确定的扩展 */
+config.resolve.extensions
+  .add('.tsx')
+  .add('.ts')
+  .add('.js')
+  .add('.json')
+  .add('.jsx')
 
+config.resolve.mainFields
+  .add('jsnext:main')
+  .add('browser')
+  .add('main')
+
+/** 解析目录时要使用的文件名。 */
+config.resolve.mainFiles
+  .add('index')
+
+config.resolve.modules
+  .add(static.MODULESPATH)
+  .add('node_modules')
+  
 module.exports = config;
