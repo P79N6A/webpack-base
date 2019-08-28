@@ -60,7 +60,7 @@ const htmlWebPackPlugin = {
 
 module.exports = {
   ENTRY: {
-    main: resolve("../src/index.js")
+    main: resolve("../src")
   },
   FILENAME: devMode ? "js/[name].[hash:8].js" : "js/[name].[chunkhash:8].js",
   OUTPUT_PATH: resolve("../dist/page"),

@@ -1,4 +1,5 @@
 const Config = require("webpack-chain");
+// const HappyPack = require('happypack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 const static = require("./base-configuration");
@@ -9,6 +10,7 @@ Object.keys(static.ENTRY).forEach(name =>
   config.entry(name).add(static.ENTRY[name])
 );
 
+/** rule */
 /** js */
 config.module
   .rule('js')
@@ -18,19 +20,23 @@ config.module
       .end()
     .use('babel')
       .loader('babel-loader')
+      // loader('happypack/loader?id=babel')
       .options({
         ...require('./babel-options')
       })
 
-/** css */
+/** style */
 config.module
   .rule('css')
     .test(/\.(c|le)ss$/)
-    .exclude
-      .add(/node_modules/)
+    .use('style')
+      .loader('style-loader')
       .end()
-    .use('happypack')
-      .loader('happypack/loader?id=css')
+    .use('css')
+      .loader('css-loader')
+      .end()
+    .use('less')
+      .loader('less-loader')
 
 /** 图片 */
 config.module
@@ -50,20 +56,26 @@ config
   .use(HtmlWebPackPlugin, [{
     cache: true,
     favicon: static.FAVICON,
+    title: static.TITLE,
+    template: './public/index.html',
+    filename: './index.html',
     inject: true,
-    meta: {
-      viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-      "X-UA-Compatible": {
-        'http-equiv': "X-UA-Compatible",
-        "content": "ie=edge"
-      },
-      ...static.META,
-    },
+    hash: true,
+    meta: static.META,
     minify: { collapseWhitespace: true },
     showErrors: true,
-    title: static.TITLE,
     xhtml: true,
   }])
+
+/** plugin */
+
+// config
+//   .plugin('happy')
+//     .use(HappyPack, [{
+//       id: 'css',
+//       loader: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+//     }])
+
 
 /** resolve */
 /** alias */
