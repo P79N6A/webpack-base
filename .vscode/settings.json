@@ -21,6 +21,5 @@
   "[typescriptreact]": {
     "editor.formatOnSave": true
   },
-  "editor.fontLigatures": true,
-  "editor.fontWeight": "400"
+  "editor.fontLigatures": true
 }
