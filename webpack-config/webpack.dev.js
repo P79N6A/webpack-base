@@ -15,7 +15,7 @@ config
     .headers(static.HEADERS)
     .host(static.HOST || 'localhost')
     .hot(true)
-    .hotOnly(true)
+    // .hotOnly(true)
     .https(static.HTTPS)
     .inline(true)
     // .open(static.OPEN)
