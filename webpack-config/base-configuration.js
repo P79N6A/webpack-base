@@ -30,7 +30,7 @@ const devServer = {
    */
   HTTPS: {},
   /** 是否自动打开页面 */
-  OPEN: true,
+  OPEN: false,
   PORT: 8000,
   /** 设置代理 
    * {

@@ -1,10 +1,11 @@
 const Config = require("webpack-chain");
-// const HappyPack = require('happypack')
+const HappyPack = require('happypack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 const static = require("./base-configuration");
 
 const config = new Config();
+const devMode = "production" !== process.env.NODE_ENV;
 
 Object.keys(static.ENTRY).forEach(name =>
   config.entry(name).add(static.ENTRY[name])
@@ -18,9 +19,9 @@ config.module
     .exclude
       .add(/node_modules/)
       .end()
-    .use('babel')
+    .use('happypack')
       .loader('babel-loader')
-      // loader('happypack/loader?id=babel')
+      // .loader('happypack/loader?id=babel')
       .options({
         ...require('./babel-options')
       })
@@ -30,7 +31,7 @@ config.module
   .rule('css')
     .test(/\.(c|le)ss$/)
     .use('style')
-      .loader('style-loader')
+      .loader(devMode ? 'style-loader' : MiniCssExtractPlugin.loader)
       .end()
     .use('css')
       .loader('css-loader')
@@ -51,31 +52,29 @@ config.module
         limit: 8192
       })
 
+/** plugin */
 config  
   .plugin('html')
-  .use(HtmlWebPackPlugin, [{
-    cache: true,
-    favicon: static.FAVICON,
-    title: static.TITLE,
-    template: './public/index.html',
-    filename: './index.html',
-    inject: true,
-    hash: true,
-    meta: static.META,
-    minify: { collapseWhitespace: true },
-    showErrors: true,
-    xhtml: true,
-  }])
-
-/** plugin */
+    .use(HtmlWebPackPlugin, [{
+      cache: true,
+      favicon: static.FAVICON,
+      title: static.TITLE,
+      template: './public/index.html',
+      filename: './index.html',
+      inject: true,
+      hash: true,
+      meta: static.META,
+      minify: { collapseWhitespace: true },
+      showErrors: true,
+      xhtml: true,
+    }])
 
 // config
 //   .plugin('happy')
 //     .use(HappyPack, [{
-//       id: 'css',
-//       loader: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+//       id: 'babel',
+//       loaders: ['babel-loader?cacheDirectory'],
 //     }])
-
 
 /** resolve */
 /** alias */

@@ -18,7 +18,7 @@ config
     // .hotOnly(true)
     .https(static.HTTPS)
     .inline(true)
-    // .open(static.OPEN)
+    .open(static.OPEN)
     .port(static.PORT)
     .progress(true)
     .proxy(static.PROXY)
